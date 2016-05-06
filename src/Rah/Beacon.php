@@ -52,6 +52,8 @@ class Rah_Beacon
         $beacon = new Rah_Beacon_Handler();
 
         foreach ($forms as $name) {
+            // allowed form names: lowercase, digits and underscore
+            // forms must begin with a letter
             if (!preg_match('/^[a-z][a-z0-9_]*$/', $name)) {
                 trace_add('[rah_beacon: '.$name.' skipped]');
                 continue;
