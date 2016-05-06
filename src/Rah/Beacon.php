@@ -60,6 +60,12 @@ class Rah_Beacon
                 $trace->log('[rah_beacon: '.$name.' skipped]');
                 continue;
             }
+          
+            // disallow form names that collide with pre-existing registered tags
+            if (Txp::get('\Textpattern\Tag\Registry')->isRegistered($name)) {
+                 $trace->log('[rah_beacon: '.$name.' skipped – tag already exists]');
+                continue;
+            }
 
             Txp::get('\Textpattern\Tag\Registry')->register(array($beacon, $name), $name);
         }
