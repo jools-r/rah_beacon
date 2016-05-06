@@ -43,6 +43,8 @@ class Rah_Beacon
 
     public function light()
     {
+        global $trace;
+        
         $forms = safe_column(
             'name',
             'txp_form',
@@ -55,7 +57,7 @@ class Rah_Beacon
             // allowed form names: lowercase, digits and underscore
             // forms must begin with a letter
             if (!preg_match('/^[a-z][a-z0-9_]*$/', $name)) {
-                trace_add('[rah_beacon: '.$name.' skipped]');
+                $trace->log('[rah_beacon: '.$name.' skipped]');
                 continue;
             }
 
